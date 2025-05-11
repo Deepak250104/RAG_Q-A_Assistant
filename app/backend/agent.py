@@ -1,29 +1,51 @@
+import os
+from dotenv import load_dotenv
 from langchain.chains import RetrievalQA
-from langchain_community.llms import OpenAI
-from langchain.agents import initialize_agent
-from langchain.tools import Tool  # Changed import
+from langchain.agents import initialize_agent, AgentType
+from langchain.tools import Tool
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import TextLoader
+from langchain_huggingface import HuggingFaceEndpoint
+
+# Load environment variables
+load_dotenv()
+
+# Get the Hugging Face API token
+HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
+MODEL_ID = "google/flan-t5-large"  
 
 def run_agent(query, vectordb):
-    """
-    This function takes a query and retrieves relevant information from the vector store.
-    It then uses the LangChain agent to process the query and return an answer.
-    """
-    # Step 1: Initialize the LLM and retriever
-    llm = OpenAI(temperature=0)  # You can modify the temperature for the LLM
+    # Initialize the LLM with correct parameter structure
+    llm = HuggingFaceEndpoint(
+        repo_id=MODEL_ID,
+        task="text2text-generation",
+        temperature=0.1,
+        max_new_tokens=512,
+        huggingfacehub_api_token=HUGGINGFACE_API_TOKEN,
+        model_kwargs={"timeout": 30}  # Moved from client_kwargs to model_kwargs
+    )
+    
+    # Set up retriever tool
     retriever = vectordb.as_retriever()
-
-    # Step 2: Initialize the agent with the retriever and LLM
     tools = [
         Tool(
             name="Retriever",
-            func=retriever.retrieve,
+            func=retriever.get_relevant_documents,
             description="Retrieve relevant information from the vector store"
         )
     ]
-    agent = initialize_agent(tools, llm, agent_type="zero-shot-react-description", verbose=True)
-
-    # Step 3: Use the agent to run the query and get an answer
-    answer = agent.run(query)
-    return answer
+    
+    # Use specific AgentType enum instead of string
+    agent = initialize_agent(
+        tools, 
+        llm, 
+        agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, 
+        verbose=True
+    )
+    
+    # Error handling for agent execution
+    try:
+        answer = agent.invoke({"input": query})
+        return answer.get("output", "No response generated")
+    except Exception as e:
+        return f"An error occurred: {str(e)}"

@@ -1,22 +1,27 @@
 import os
-from langchain.document_loaders import TextLoader
-from vectorstore.index import save_vector_store
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import FAISS
+import sys
+from langchain_community.document_loaders import TextLoader
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
 from dotenv import load_dotenv
+
+# Get the absolute path to the project root
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.insert(0, project_root)
+
+from vectorstore.index import save_vector_store  # Now an absolute import should work
 
 # Load environment variables
 load_dotenv()
 
-# Get the vector store path from environment variables (default to `data/processed/vectorstore/` if not set)
+# Get the vector store path
 VECTOR_DB_PATH = os.getenv("VECTOR_DB_PATH", "data/processed/vectorstore/")
 
 def ingest_documents():
     """
-    Function to ingest documents from the `data/documents/` directory, process them,
-    and save them to the vector store.
+    Function to ingest documents, process them, and save to the vector store.
     """
-    # Load documents from the 'data/documents/' directory
+    # Load documents
     documents = []
     for filename in os.listdir("data/documents"):
         if filename.endswith(".txt"):
@@ -29,7 +34,10 @@ def ingest_documents():
     # Use FAISS for vector storage
     vectordb = FAISS.from_documents(documents, embeddings)
 
-    # Save the vector store to the specified path
-    save_vector_store(vectordb.index, vectordb, VECTOR_DB_PATH)
+    # Save the vector store
+    save_vector_store(vectordb, {"embeddings": embeddings}, VECTOR_DB_PATH)
 
     print(f"Ingested and indexed {len(documents)} document chunks.")
+
+if __name__ == "__main__":
+    ingest_documents()
