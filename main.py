@@ -34,9 +34,12 @@ def main():
     print(f"Processing query: {query}")
     retrieved_chunks = retrieve_relevant_chunks(query, vectordb)
 
-    # Generate the final answer from the retrieved chunks
-    print("Generating answer from retrieved chunks...")
-    answer = generate_answer(retrieved_chunks)
+    # Create context based on retrieved chunks or from a predefined source
+    context = " ".join(retrieved_chunks)  # Combining the retrieved chunks as context
+
+    # Generate the final answer from the query and the context
+    print("Generating answer from retrieved chunks and context...")
+    answer = generate_answer(query, context)  # Passing both query and context
     print(f"Answer: {answer}")
 
     # Optionally, save the updated vector store again after processing
