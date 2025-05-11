@@ -1,0 +1,62 @@
+# Transformer Models in NLP
+
+Transformer models have revolutionized natural language processing since their introduction in the 2017 paper "Attention Is All You Need" by Vaswani et al. These models rely primarily on attention mechanisms rather than recurrent or convolutional neural networks.
+
+## Architecture Overview
+
+### Key Components
+- **Self-Attention Mechanism**: Allows the model to weight the importance of different words in relation to each other
+- **Multi-Head Attention**: Multiple attention mechanisms running in parallel
+- **Positional Encoding**: Provides information about the position of words in the sequence
+- **Feed-Forward Networks**: Process the attention outputs
+- **Residual Connections**: Help with training deeper networks
+- **Layer Normalization**: Stabilizes the learning process
+
+### Encoder-Decoder Structure
+- **Encoder**: Processes the input sequence and creates representations
+- **Decoder**: Generates output sequence based on encoder representations and previously generated outputs
+
+## Major Transformer Models
+
+### BERT (Bidirectional Encoder Representations from Transformers)
+- Bidirectional training (learns from left and right context)
+- Pre-trained on large text corpora using masked language modeling
+- Fine-tuned for specific downstream tasks
+- Variants include RoBERTa, DistilBERT, ALBERT
+
+### GPT (Generative Pre-trained Transformer)
+- Autoregressive model (predicts next token based on previous tokens)
+- Pre-trained on diverse internet text
+- Strong text generation capabilities
+- Evolving series: GPT, GPT-2, GPT-3, GPT-4
+
+### T5 (Text-to-Text Transfer Transformer)
+- Frames all NLP tasks as text-to-text problems
+- Unified approach to multiple tasks
+- Uses a consistent input-output format
+
+## Applications
+
+- **Text Classification**: Sentiment analysis, topic classification
+- **Named Entity Recognition**: Identifying entities in text
+- **Question Answering**: Finding answers in context
+- **Text Summarization**: Creating concise summaries
+- **Machine Translation**: Converting between languages
+- **Text Generation**: Creating coherent, contextual text
+- **Few-Shot Learning**: Performing tasks with minimal examples
+
+## Advantages and Limitations
+
+### Advantages
+- Captures long-range dependencies in text
+- Highly parallelizable (faster training than RNNs)
+- Achieves state-of-the-art results on many NLP tasks
+- Transfer learning capabilities reduce task-specific training data requirements
+
+### Limitations
+- Computationally intensive
+- Large model sizes (billions of parameters)
+- Energy consumption concerns
+- Potential for biased outputs reflecting training data
+
+Transformer models continue to grow in size and capability, with researchers exploring ways to make them more efficient, interpretable, and adaptable to specialized domains.

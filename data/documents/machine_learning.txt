@@ -1,0 +1,49 @@
+# Machine Learning Fundamentals
+
+Machine learning (ML) is a subset of artificial intelligence that focuses on building systems that learn from data. Unlike traditional programming where explicit rules must be specified, machine learning algorithms improve automatically through experience.
+
+## Types of Machine Learning
+
+### Supervised Learning
+- Learning from labeled data
+- Predicting outcomes for new inputs
+- Examples: Linear regression, support vector machines, neural networks
+- Used for: Classification and regression tasks
+
+### Unsupervised Learning
+- Learning patterns from unlabeled data
+- Finding hidden structures in data
+- Examples: Clustering algorithms, dimensionality reduction, generative models
+- Used for: Clustering, association rules, anomaly detection
+
+### Reinforcement Learning
+- Learning through interaction with an environment
+- Maximizing rewards through trial and error
+- Examples: Q-learning, policy gradients, deep reinforcement learning
+- Used for: Game playing, robotics, resource management
+
+## Key Concepts
+
+### Features and Labels
+Features are the input variables used for prediction. Labels are the output variables being predicted in supervised learning.
+
+### Training and Testing
+The dataset is typically split into training data (used to learn patterns) and testing data (used to evaluate model performance).
+
+### Overfitting and Underfitting
+Overfitting occurs when a model performs well on training data but poorly on new data. Underfitting happens when a model is too simple to capture underlying patterns.
+
+### Model Evaluation
+Common metrics include accuracy, precision, recall, F1-score for classification; mean squared error and R-squared for regression.
+
+## The Machine Learning Pipeline
+
+1. **Data Collection**: Gathering relevant data from various sources
+2. **Data Preprocessing**: Cleaning, normalization, feature selection/engineering
+3. **Model Selection**: Choosing appropriate algorithms for the task
+4. **Training**: Teaching the model to recognize patterns in data
+5. **Evaluation**: Assessing model performance on unseen data
+6. **Deployment**: Implementing the model in real-world applications
+7. **Monitoring**: Tracking performance and retraining as needed
+
+Machine learning continues to advance rapidly, with deep learning and neural networks driving many recent breakthroughs in fields like computer vision, natural language processing, and reinforcement learning.
