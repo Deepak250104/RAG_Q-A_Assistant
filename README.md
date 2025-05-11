@@ -13,6 +13,13 @@ This project leverages a combination of FAISS for efficient similarity search an
 * **Query Handling**: Process user queries by retrieving the most relevant document chunks and generating responses.
 * **Customization**: Easily replace the backend model or vector store for different applications.
 
+## 🧠 RAG QnA Agent Demo
+
+Check out the live demo hosted on Hugging Face Spaces:
+
+🔗 **[RAG QnA Agent on Hugging Face](https://huggingface.co/spaces/Deepak250104/RAG_QnA_Agent)**
+
+
 ## Requirements
 
 Before running the project, ensure you have the following installed:
@@ -37,6 +44,7 @@ pip install -r requirements.txt
 ```plaintext
 RAG-POWERED_AGENTIC_Q-A_ASSISTANT/
 ├── app/
+|   ├──__init__.py
 │   └── backend/
 │       ├── __pycache__/
 │       ├── __init__.py
@@ -44,6 +52,7 @@ RAG-POWERED_AGENTIC_Q-A_ASSISTANT/
 │       ├── ingest.py           # Document ingestion and vector store indexing.
 │       ├── llm.py              # Logic to interact with language models.
 │       ├── retriever.py        # Functions for retrieving relevant document chunks.
+|       ├── simple_qa.py
 │       ├── tools.py            # Utility functions for the application.
 │       └── utils.py            # Additional helper functions.
 │   └── interface/
@@ -67,7 +76,8 @@ RAG-POWERED_AGENTIC_Q-A_ASSISTANT/
 │   └── index.py                # Code for vector store manipulation.
 ├── .env                         # Environment variables for configuration (e.g., API keys).
 ├── LICENSE                      # License file for the project.
-├── MAIN.py                      # Main entry point for the application.
+├── main.py                      # Main entry point for the application.
+├── app.py 
 ├── README.md                    # Project documentation (this file).
 └── requirements.txt             # Python dependencies for the project.
 ```
@@ -140,5 +150,9 @@ Contributions are welcome! If you'd like to add features or improve the project,
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more information.
+This project is open-source and available under the [MIT License](https://opensource.org/license/MIT).
+
+## Author 
+
+[Deepak250104](https://github.com/Deepak250104)
 
